@@ -378,26 +378,26 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                     <!-- Step 1 -->
                     <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/login-register-icon.png" alt="Login Register Icon" class="w-16 h-16 mx-auto">
+                        <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                            <img src="images/login.jpg" alt="Login Register Icon" class="object-cover w-full h-full">
                         </div>
                         <h3 class="text-2xl font-bold mb-4">Login or Register</h3>
                         <p class="text-gray-600">Create an account or log in to start using ReCuisine.</p>
                     </div>
                     <!-- Step 2 -->
                     <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/choose-food-icon.png" alt="Choose Food Icon" class="w-16 h-16 mx-auto">
+                        <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                            <img src="images/browse.jpg" alt="Choose Food Icon" class="object-cover w-full h-full">
                         </div>
                         <h3 class="text-2xl font-bold mb-4">Choose Your Food</h3>
                         <p class="text-gray-600">Browse through available surplus food items and make your selection.</p>
                     </div>
                     <!-- Step 3 -->
                     <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/token-icon.png" alt="Token Icon" class="w-16 h-16 mx-auto">
+                        <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                            <img src="images/token.png" alt="Token Icon" class="object-cover w-full h-full">
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Show Your Token, Pay, and Get the Food</h3>
+                        <h3 class="text-2xl font-bold mb-4">Show Your Token To Get the Food</h3>
                         <p class="text-gray-600">Show your token at the food provider's location, pay the discounted price, and collect your food.</p>
                     </div>
                 </div>
