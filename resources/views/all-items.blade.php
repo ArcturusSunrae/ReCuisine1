@@ -336,13 +336,22 @@
 
 
 <!-- Search Section -->
-<section class="bg-white py-8">
-    <div class="container mx-auto flex justify-center items-center">
-        <input type="text" placeholder="Search" class="w-1/2 border border-gray-300 rounded-lg px-4 py-2">
+
+<form action="{{ url('#') }}" method="GET" class="flex items-center justify-center w-full p-4">
+    <div class="flex w-full max-w-4xl">
+        <input
+            type="text"
+            name="search"
+            placeholder="Search food items..."
+            class="w-full p-2 border border-brown-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-brown-50 text-brown-700 placeholder-brown-500"
+            value="{{ request()->input('search') }}">
+        <button
+            type="submit"
+            class="p-2 bg-green-500 text-white rounded-r-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+            Search
+        </button>
     </div>
-</section>
-
-
+</form>
 
 
 <!-- Categories -->
@@ -353,26 +362,73 @@
             <!-- Category 1 -->
             <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
                 <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <img src="/mnt/data/image.png" alt="Fast Food" class="object-cover w-full h-full">
+                    <img src="images/fastfood.jpg" class="object-cover w-full h-full">
                 </div>
                 <p class="text-center mt-2 font-semibold">Fast Food</p>
             </div>
             <!-- Category 2 -->
             <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
                 <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <img src="/mnt/data/image.png" alt="Bread" class="object-cover w-full h-full">
+                    <img src="images/bread.jpg" class="object-cover w-full h-full">
                 </div>
                 <p class="text-center mt-2 font-semibold">Bread</p>
             </div>
             <!-- Category 3 -->
             <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
                 <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <img src="/mnt/data/image.png" alt="Protein" class="object-cover w-full h-full">
+                    <img src="/images/protein.jpg" class="object-cover w-full h-full">
                 </div>
                 <p class="text-center mt-2 font-semibold">Protein</p>
             </div>
-            <!-- Add more categories as needed -->
+            <!-- Category 4 -->
+            <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="/images/shorteats.jpg" class="object-cover w-full h-full">
+                </div>
+                <p class="text-center mt-2 font-semibold">Pastry</p>
+            </div>
+            <!-- Category 5 -->
+            <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="/images/vege.jpg" class="object-cover w-full h-full">
+                </div>
+                <p class="text-center mt-2 font-semibold">Vegetarian</p>
+            </div>
+            <!-- Category 6 -->
+            <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="/images/sweets.jpg" class="object-cover w-full h-full">
+                </div>
+                <p class="text-center mt-2 font-semibold">Sweets</p>
+            </div>
         </div>
+
+
+
+
+{{--        @foreach ($groupedByCategory as $category => $foodItems)--}}
+{{--            <h2 class="text-2xl font-bold mb-4">{{ $category }}</h2>--}}
+{{--            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">--}}
+{{--                @foreach ($foodItems as $foodItem)--}}
+{{--                    <div class="bg-white p-6 rounded-lg shadow-lg dish-card m-8">--}}
+{{--                        <img src="{{ asset('storage/' . $foodItem->image) }}" alt="{{ $foodItem->title}}" class="w-full h-40 object-cover rounded-t-lg mb-4">--}}
+{{--                        <h3 class="text-xl font-bold mb-2">{{ $foodItem->title }}</h3>--}}
+{{--                        <h6 class="text-xl font-bold mb-2">{{ $foodItem->supplier }}</h6>--}}
+{{--                        <p class="text-gray-600 mb-2">LKR {{ number_format($foodItem->price, 2) }}</p>--}}
+{{--                        <span class="text-gray-600">({{ $foodItem->quantity }})</span>--}}
+{{--                        <div class="flex justify-between items-center mt-4">--}}
+{{--                            <div class="flex items-center">--}}
+{{--                                <button class="button-primary px-3 py-1 rounded-l-lg" onclick="updateQuantity(this, -1)">-</button>--}}
+{{--                                <input type="number" value="0" class="w-12 text-center border-t border-b">--}}
+{{--                                <button class="button-primary px-3 py-1 rounded-r-lg" onclick="updateQuantity(this, 1)">+</button>--}}
+{{--                            </div>--}}
+{{--                            <button class="button-primary py-2 px-4 rounded-lg">Add to Cart</button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--        @endforeach--}}
+
     </div>
 </section>
 

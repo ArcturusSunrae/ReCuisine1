@@ -98,7 +98,3 @@ Route::middleware(['auth', 'role:supplier'])->group(function () {
     })->name('supplier.dashboard');
 });
 
-//search functionality routing
-//Route::get('/',
-//    [HomeController::class, 'index'])
-//    ->name('home');
