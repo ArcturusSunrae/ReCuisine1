@@ -67,13 +67,8 @@ Route::get('/authentication', function () {
 
 
 
-Route::get('/supplier/dashboard', [SupplierDashboardController::class, 'index'])->name('supplier.dashboard');
 
-Route::middleware(['auth', 'role:supplier'])->group(function () {
-    Route::get('/supplier/dashboard', function () {
-        return view('supplier.dashboard'); // Assuming 'supplier.dashboard' is the view file
-    })->name('supplier.dashboard');
-});
+
 
 Route::post('add_cart/{id}', [DashboardController::class, 'add_cart'])
     ->middleware(['auth', 'verified']);
@@ -93,3 +88,17 @@ Route::get('/pickup-scheduling', [PaymentController::class, 'showPickupSchedulin
 
 Route::get('/online-payment', [PaymentController::class, 'showOnlinePaymentPage'])
     ->name('online.payment');
+
+
+Route::get('/supplier/dashboard', [SupplierDashboardController::class, 'index'])->name('supplier.dashboard');
+
+Route::middleware(['auth', 'role:supplier'])->group(function () {
+    Route::get('/supplier/dashboard', function () {
+        return view('supplier.dashboard'); // Assuming 'supplier.dashboard' is the view file
+    })->name('supplier.dashboard');
+});
+
+//search functionality routing
+//Route::get('/',
+//    [HomeController::class, 'index'])
+//    ->name('home');
