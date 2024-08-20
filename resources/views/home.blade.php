@@ -272,11 +272,26 @@
             color: #555555;
         }
 
+        #flash-banner {
+            animation: fadeOut 5s forwards; /* Fade out after 5 seconds */
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
 
     </style>
 </head>
 <body class="bg-brown-900">
 
+@if (session('success'))
+    <div id="flash-banner" class="top-0 left-0 right-0 bg-yellow-200 text-black text-center py-3 z-50">
+        {{ session('success') }}
+    </div>
+@endif
 
 
 <!-- Header Section -->
@@ -289,17 +304,33 @@
             </select>
         </div>
         <div class="flex items-center space-x-6">
-            <a href="#" class="text-white">All Items</a>
-            <a href="#" class="text-white">Login</a>
-            <a href="#" class="text-white">Register</a>
-            <a href="#" class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Become a Supplier</a>
-            <a href="#" class="text-white">
+            <a href="{{ route('home') }}" class="text-white">Home</a>
+            <a href="{{ route('all-items') }}" class="text-white">All Items</a>
+
+            <!-- Show Login and Register links only if the user is not logged in -->
+            @guest
+                <a href="{{ route('login') }}" class="text-white">Login</a>
+                <a href="{{ route('register') }}" class="text-white">Register</a>
+            @endguest
+
+            <!-- Show Logout link only if the user is logged in -->
+            @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-white">Logout</button>
+                </form>
+            @endauth
+
+            <a href="{{ route('register_supplier') }}" class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Become a Supplier</a>
+
+            <a href="{{url('mycart')}}" class="text-white">
                 <i class="fas fa-shopping-cart"></i>
+                ({{ $count }})
             </a>
-            <button class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Order Now</button>
         </div>
     </div>
 </header>
+
 
 
 
@@ -388,16 +419,25 @@
                 <img src="/mnt/data/image.png" alt="Dish Image" class="w-full h-40 object-cover rounded-t-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">{{ $fooditem->title }}</h3>
                 <p class="text-gray-600 mb-2">LKR {{ $fooditem->price }}</p>
+
                 <div class="flex justify-between items-center">
-                    <div class="flex items-center">
-                        <button class="button-primary px-3 py-1 rounded-l-lg" onclick="updateQuantity(this, -1)">-</button>
-                        <input type="text" value="0" class="w-12 text-center border-t border-b">
-                        <button class="button-primary px-3 py-1 rounded-r-lg" onclick="updateQuantity(this, 1)">+</button>
-                    </div>
-                    <button class="button-primary py-2 px-4 rounded-lg">Add to Cart</button>
+                    <form action="{{ url('add_cart', $fooditem->id) }}" method="POST" class="flex items-center">
+                        @csrf <!-- This is important for security reasons (CSRF protection) -->
+
+                        <div class="flex items-center">
+                            <button type="button" class="button-primary px-3 py-1 rounded-l-lg" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" name="quantity" value="1" min="1" class="w-12 text-center border-t border-b">
+                            <button type="button" class="button-primary px-3 py-1 rounded-r-lg" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+
+                        <input type="hidden" name="price" value="{{ $fooditem->price }}">
+
+                        <button type="submit" class="button-primary py-2 px-4 rounded-lg ml-4">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         @endforeach
+
 
 
     </div>
@@ -553,6 +593,8 @@
         <div class="mt-6">
             <p>&copy; 2024 ReCuisine. All rights reserved.</p>
         </div>
+    </div>
+
 
 </footer>
 
@@ -623,6 +665,18 @@
     });
 
 
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            var flashBanner = document.getElementById('flash-banner');
+            if (flashBanner) {
+                flashBanner.style.transition = 'opacity 0.5s ease';
+                flashBanner.style.opacity = '0';
+                setTimeout(function() {
+                    flashBanner.remove();
+                }, 500); // Remove element after fade out
+            }
+        }, 5000); // Display for 5 seconds
+    });
 
 
 </script>

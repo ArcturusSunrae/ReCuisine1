@@ -272,11 +272,28 @@
             color: #555555;
         }
 
+        #flash-banner {
+            animation: fadeOut 5s forwards; /* Fade out after 5 seconds */
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
 
     </style>
 </head>
 <body class="bg-brown-900">
 
+
+
+@if (session('success'))
+    <div id="flash-banner" class="top-0 left-0 right-0 bg-yellow-200 text-black text-center py-3 z-50">
+        {{ session('success') }}
+    </div>
+@endif
 
 
 <!-- Header Section -->
@@ -289,97 +306,112 @@
             </select>
         </div>
         <div class="flex items-center space-x-6">
-            <a href="#" class="text-white">All Items</a>
-            <a href="#" class="text-white">Login</a>
-            <a href="#" class="text-white">Register</a>
-            <a href="#" class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Become a Supplier</a>
-            <a href="#" class="text-white">
+            <a href="{{ route('home') }}" class="text-white">Home</a>
+            <a href="{{ route('all-items') }}" class="text-white">All Items</a>
+
+            <!-- Show Login and Register links only if the user is not logged in -->
+            @guest
+                <a href="{{ route('login') }}" class="text-white">Login</a>
+                <a href="{{ route('register') }}" class="text-white">Register</a>
+            @endguest
+
+            <!-- Show Logout link only if the user is logged in -->
+            @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-white">Logout</button>
+                </form>
+            @endauth
+
+            <a href="{{ route('register_supplier') }}" class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Become a Supplier</a>
+
+            <a href="{{url('mycart')}}" class="text-white">
                 <i class="fas fa-shopping-cart"></i>
+                ({{ $count }})
             </a>
-            <button class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Order Now</button>
         </div>
     </div>
 </header>
 
 
 
-
-<!-- Main Content -->
-<main class="relative mb-20">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/landing.jpg'); filter: brightness(0.5); background-attachment: fixed"></div>
-    <div class="relative container mx-auto text-center text-white py-40">
-        <h2 class="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">From Plate to Purpose, Every Meal Matters</h2>
-        <p class="text-xl md:text-2xl mb-8 drop-shadow-md">Join ReCuisine and make a difference by reducing food waste and helping those in need.</p>
-        <div class="flex justify-center mt-10">
-            <a href="#learn-more" class="button-primary text-lg md:text-xl px-8 py-4 bg-green-600 hover:bg-green-700 transition duration-300 ease-in-out rounded-lg shadow-lg">Learn More</a>
-        </div>
+<!-- Search Section -->
+<section class="bg-white py-8">
+    <div class="container mx-auto flex justify-center items-center">
+        <input type="text" placeholder="Search" class="w-1/2 border border-gray-300 rounded-lg px-4 py-2">
     </div>
-</main>
-
-<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-    <div class="p-8 sm:px-20 bg-white border-b border-gray-200">
-
-    </div>
-</div>
-
-
-<!-- Supplier Section -->
-<section class="my-10 py-16 bg-[#D2B48C] text-white text-center rounded-lg shadow-lg relative overflow-hidden bg-fixed" style="background-image: url('images/supplier.jpeg'); background-size: cover;">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <div class="relative z-10 container mx-auto px-4">
-        <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Do You Want to be a Supplier?</h2>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Join our network of suppliers and help us deliver the finest ingredients to our customers. Be part of our mission to bring quality and freshness to every meal we serve.</p>
-        <a href="{{ route('register_supplier') }}" class="bg-white text-[#D2B48C] font-semibold text-lg md:text-xl px-8 py-4 rounded-full transition duration-300 hover:bg-[#C19A6B] hover:text-white shadow-lg transform hover:scale-105">Become a Supplier</a>
-    </div>
-    <div class="absolute top-0 left-0 w-16 h-16 bg-white rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2 animate-ping"></div>
-    <div class="absolute bottom-0 right-0 w-16 h-16 bg-white rounded-full shadow-lg transform translate-x-1/2 translate-y-1/2 animate-ping"></div>
 </section>
 
 
-<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
 
-        <!-- How It Works Section -->
-        <section id="how-it-works">
-            <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-10">How It Works</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <!-- Step 1 -->
-                    <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/login-register-icon.png" alt="Login Register Icon" class="w-16 h-16 mx-auto">
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Login or Register</h3>
-                        <p class="text-gray-600">Create an account or log in to start using ReCuisine.</p>
-                    </div>
-                    <!-- Step 2 -->
-                    <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/choose-food-icon.png" alt="Choose Food Icon" class="w-16 h-16 mx-auto">
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Choose Your Food</h3>
-                        <p class="text-gray-600">Browse through available surplus food items and make your selection.</p>
-                    </div>
-                    <!-- Step 3 -->
-                    <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/token-icon.png" alt="Token Icon" class="w-16 h-16 mx-auto">
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Show Your Token, Pay, and Get the Food</h3>
-                        <p class="text-gray-600">Show your token at the food provider's location, pay the discounted price, and collect your food.</p>
-                    </div>
+<!-- Categories -->
+<section class="py-8 bg-gray-100">
+    <div class="container mx-auto">
+        <h2 class="text-2xl font-bold mb-4 text-center">Search by Category</h2>
+        <div class="flex justify-center space-x-6 overflow-x-auto pb-4">
+            <!-- Category 1 -->
+            <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="/mnt/data/image.png" alt="Fast Food" class="object-cover w-full h-full">
                 </div>
+                <p class="text-center mt-2 font-semibold">Fast Food</p>
             </div>
-        </section>
-
+            <!-- Category 2 -->
+            <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="/mnt/data/image.png" alt="Bread" class="object-cover w-full h-full">
+                </div>
+                <p class="text-center mt-2 font-semibold">Bread</p>
+            </div>
+            <!-- Category 3 -->
+            <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                <div class="w-full h-full rounded-full overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="/mnt/data/image.png" alt="Protein" class="object-cover w-full h-full">
+                </div>
+                <p class="text-center mt-2 font-semibold">Protein</p>
+            </div>
+            <!-- Add more categories as needed -->
+        </div>
     </div>
-</div>
+</section>
+
+
+
+
+<!-- Available Suppliers -->
+<section class="py-8 bg-gray-100">
+    <div class="container mx-auto">
+        <h2 class="text-2xl font-bold mb-4">Suppliers</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <img src="/mnt/data/image.png" alt="Supplier 1" class="w-full h-32 object-cover rounded-lg mb-4">
+                <h3 class="text-lg font-bold mb-2">Foodworld</h3>
+                <p class="text-gray-600">Coming Soon</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <img src="/mnt/data/image.png" alt="Supplier 2" class="w-full h-32 object-cover rounded-lg mb-4">
+                <h3 class="text-lg font-bold mb-2">Pizzahub</h3>
+                <p class="text-gray-600">Coming Soon</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <img src="/mnt/data/image.png" alt="Supplier 3" class="w-full h-32 object-cover rounded-lg mb-4">
+                <h3 class="text-lg font-bold mb-2">Donuts Hut</h3>
+                <p class="text-green-500 font-semibold">Open Now</p>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">View All</button>
+        </div>
+    </div>
+</section>
+
+
 
 
 <!-- Food Listing Section -->
 <main class="container mx-auto mt-10">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Current Discounted food items </h2>
+    <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Available food items </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
         <!-- Food Item 1 -->
@@ -388,49 +420,31 @@
                 <img src="/mnt/data/image.png" alt="Dish Image" class="w-full h-40 object-cover rounded-t-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">{{ $fooditem->title }}</h3>
                 <p class="text-gray-600 mb-2">LKR {{ $fooditem->price }}</p>
+
                 <div class="flex justify-between items-center">
-                    <div class="flex items-center">
-                        <button class="button-primary px-3 py-1 rounded-l-lg" onclick="updateQuantity(this, -1)">-</button>
-                        <input type="text" value="0" class="w-12 text-center border-t border-b">
-                        <button class="button-primary px-3 py-1 rounded-r-lg" onclick="updateQuantity(this, 1)">+</button>
-                    </div>
-                    <button class="button-primary py-2 px-4 rounded-lg">Add to Cart</button>
+                    <form action="{{ url('add_cart', $fooditem->id) }}" method="POST" class="flex items-center">
+                        @csrf <!-- This is important for security reasons (CSRF protection) -->
+
+                        <div class="flex items-center">
+                            <button type="button" class="button-primary px-3 py-1 rounded-l-lg" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" name="quantity" value="1" min="1" class="w-12 text-center border-t border-b">
+                            <button type="button" class="button-primary px-3 py-1 rounded-r-lg" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+
+                        <input type="hidden" name="price" value="{{ $fooditem->price }}">
+
+                        <button type="submit" class="button-primary py-2 px-4 rounded-lg ml-4">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         @endforeach
+
 
 
     </div>
 
 </main>
 
-
-<!-- Categories Section -->
-<section class="mt-10 mb-10">
-    <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-bold text-gray-800 mb-6">Browse Our Categories</h2>
-        <div class="marquee">
-            <div class="marquee-content flex items-center space-x-8">
-                <div class="text-2xl font-bold text-gray-800">Bakery Items</div>
-                <div class="text-2xl font-bold text-gray-800">Meat Based</div>
-                <div class="text-2xl font-bold text-gray-800">Desserts</div>
-                <div class="text-2xl font-bold text-gray-800">Vegetarian</div>
-                <div class="text-2xl font-bold text-gray-800">Buffet</div>
-                <div class="text-2xl font-bold text-gray-800">Chinese Cuisine</div>
-                <div class="text-2xl font-bold text-gray-800">Sweets</div>
-                <div class="text-2xl font-bold text-gray-800">Breakfast Items</div>
-
-
-                <div class="text-2xl font-bold text-gray-800">Lunch Items</div>
-                <div class="text-2xl font-bold text-gray-800">Dinner Items</div>
-                <div class="text-2xl font-bold text-gray-800">Packetted Food</div>
-                <div class="text-2xl font-bold text-gray-800">Breads</div>
-
-
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Contact Section -->
 <section class="bg-gray-800 text-white py-5">
@@ -620,6 +634,19 @@
         }, { threshold: 0.1 });
 
         observer.observe(footer);
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            var flashBanner = document.getElementById('flash-banner');
+            if (flashBanner) {
+                flashBanner.style.transition = 'opacity 0.5s ease';
+                flashBanner.style.opacity = '0';
+                setTimeout(function() {
+                    flashBanner.remove();
+                }, 500); // Remove element after fade out
+            }
+        }, 5000); // Display for 5 seconds
     });
 
 
