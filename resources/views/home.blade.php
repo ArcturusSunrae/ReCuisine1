@@ -272,11 +272,26 @@
             color: #555555;
         }
 
+        #flash-banner {
+            animation: fadeOut 5s forwards; /* Fade out after 5 seconds */
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
 
     </style>
 </head>
 <body class="bg-brown-900">
 
+@if (session('success'))
+    <div id="flash-banner" class="top-0 left-0 right-0 bg-yellow-200 text-black text-center py-3 z-50">
+        {{ session('success') }}
+    </div>
+@endif
 
 
 <!-- Header Section -->
@@ -289,17 +304,33 @@
             </select>
         </div>
         <div class="flex items-center space-x-6">
-            <a href="#" class="text-white">All Items</a>
-            <a href="#" class="text-white">Login</a>
-            <a href="#" class="text-white">Register</a>
-            <a href="#" class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Become a Supplier</a>
-            <a href="#" class="text-white">
+            <a href="{{ route('home') }}" class="text-white">Home</a>
+            <a href="{{ route('all-items') }}" class="text-white">All Items</a>
+
+            <!-- Show Login and Register links only if the user is not logged in -->
+            @guest
+                <a href="{{ route('login') }}" class="text-white">Login</a>
+                <a href="{{ route('register') }}" class="text-white">Register</a>
+            @endguest
+
+            <!-- Show Logout link only if the user is logged in -->
+            @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-white">Logout</button>
+                </form>
+            @endauth
+
+            <a href="{{ route('register_supplier') }}" class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Become a Supplier</a>
+
+            <a href="{{url('mycart')}}" class="text-white">
                 <i class="fas fa-shopping-cart"></i>
+                ({{ $count }})
             </a>
-            <button class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded">Order Now</button>
         </div>
     </div>
 </header>
+
 
 
 
@@ -347,26 +378,26 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                     <!-- Step 1 -->
                     <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/login-register-icon.png" alt="Login Register Icon" class="w-16 h-16 mx-auto">
+                        <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                            <img src="images/login.jpg" alt="Login Register Icon" class="object-cover w-full h-full">
                         </div>
                         <h3 class="text-2xl font-bold mb-4">Login or Register</h3>
                         <p class="text-gray-600">Create an account or log in to start using ReCuisine.</p>
                     </div>
                     <!-- Step 2 -->
                     <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/choose-food-icon.png" alt="Choose Food Icon" class="w-16 h-16 mx-auto">
+                        <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                            <img src="images/browse.jpg" alt="Choose Food Icon" class="object-cover w-full h-full">
                         </div>
                         <h3 class="text-2xl font-bold mb-4">Choose Your Food</h3>
                         <p class="text-gray-600">Browse through available surplus food items and make your selection.</p>
                     </div>
                     <!-- Step 3 -->
                     <div class="card flex flex-col items-center fade-in-up">
-                        <div class="icon mb-6">
-                            <img src="images/token-icon.png" alt="Token Icon" class="w-16 h-16 mx-auto">
+                        <div class="flex flex-col items-center w-40 h-40 flex-shrink-0">
+                            <img src="images/token.png" alt="Token Icon" class="object-cover w-full h-full">
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Show Your Token, Pay, and Get the Food</h3>
+                        <h3 class="text-2xl font-bold mb-4">Show Your Token To Get the Food</h3>
                         <p class="text-gray-600">Show your token at the food provider's location, pay the discounted price, and collect your food.</p>
                     </div>
                 </div>
@@ -378,29 +409,11 @@
 
 
 <!-- Food Listing Section -->
+
 <main class="container mx-auto mt-10">
     <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Current Discounted food items </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-        <!-- Food Item 1 -->
-        @foreach($foodItems as $fooditem)
-            <div class="bg-white p-6 rounded-lg shadow-lg dish-card" data-aos="fade-up">
-                <img src="/mnt/data/image.png" alt="Dish Image" class="w-full h-40 object-cover rounded-t-lg mb-4">
-                <h3 class="text-xl font-bold mb-2">{{ $fooditem->title }}</h3>
-                <p class="text-gray-600 mb-2">LKR {{ $fooditem->price }}</p>
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center">
-                        <button class="button-primary px-3 py-1 rounded-l-lg" onclick="updateQuantity(this, -1)">-</button>
-                        <input type="text" value="0" class="w-12 text-center border-t border-b">
-                        <button class="button-primary px-3 py-1 rounded-r-lg" onclick="updateQuantity(this, 1)">+</button>
-                    </div>
-                    <button class="button-primary py-2 px-4 rounded-lg">Add to Cart</button>
-                </div>
-            </div>
-        @endforeach
-
-
-    </div>
+    @include('fooditem')
 
 </main>
 
@@ -553,6 +566,8 @@
         <div class="mt-6">
             <p>&copy; 2024 ReCuisine. All rights reserved.</p>
         </div>
+    </div>
+
 
 </footer>
 
@@ -623,6 +638,18 @@
     });
 
 
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            var flashBanner = document.getElementById('flash-banner');
+            if (flashBanner) {
+                flashBanner.style.transition = 'opacity 0.5s ease';
+                flashBanner.style.opacity = '0';
+                setTimeout(function() {
+                    flashBanner.remove();
+                }, 500); // Remove element after fade out
+            }
+        }, 5000); // Display for 5 seconds
+    });
 
 
 </script>
