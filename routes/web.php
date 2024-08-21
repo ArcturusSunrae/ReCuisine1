@@ -40,6 +40,10 @@ Route::get('/home', [FoodItemController::class, 'index'])->name('home');
 
 Route::get('/home', [DashboardController::class, 'index'])->name('home');
 
+//search functionality routing
+Route::get('/home', [FoodItemController::class, 'searchItem'])->name('all-items');
+
+
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 Route::get('/all-items', [FoodItemController::class, 'allItems'])->name('all-items');

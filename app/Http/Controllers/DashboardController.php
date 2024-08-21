@@ -84,12 +84,27 @@ class DashboardController extends Controller
         return redirect()->back()->with('error', 'Failed to remove item from cart.');
     }
 
+//    public function paymentmethod()
+//    {
+//        return view('paymentmethod');
+//    }
+
+
     public function paymentmethod()
     {
+        $user = Auth::user();
+
+        // Check if the cart is empty for the current user
+        $cartItemCount = Cart::where('user_id', $user->id)->count();
+
+        if ($cartItemCount === 0) {
+            // If the cart is empty, redirect back with an error message
+            return redirect()->back()->with('error', 'The cart is empty. Please add items to your cart before proceeding to checkout.');
+        }
+
+        // If the cart is not empty, proceed to the payment method page
         return view('paymentmethod');
     }
-
-
 
 
 

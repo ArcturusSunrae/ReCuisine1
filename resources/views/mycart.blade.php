@@ -66,15 +66,16 @@
                                     Remove
                                 </button>
                             </form>
+
                         </div>
-                        <p class="text-xs leading-3 text-gray-600 pt-2">Price: LKR {{$cartItem -> price}}</p>
+                        <p class="text-xs leading-3 text-gray-600 pt-2">Total Price: LKR {{$cartItem -> price}}</p>
                         <p class="text-xs leading-3 text-gray-600 py-4">Quantity: {{$cartItem -> quantity}}</p>
 
                     </div>
                 </div>
 
                     <?php
-                    $value += $cartItem->price * $cartItem->quantity;
+                    $value += $cartItem->price;
                     ?>
 
             @endforeach
@@ -118,6 +119,7 @@
                     <span>Total cost</span>
                     <span>LKR {{$value}}</span>
                 </div>
+
                 <a href="{{ url('paymentmethod') }}">
                     <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
                         Checkout

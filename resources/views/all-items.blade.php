@@ -337,21 +337,13 @@
 
 <!-- Search Section -->
 
-<form action="{{ url('#') }}" method="GET" class="flex items-center justify-center w-full p-4">
+<form action="{{ route('all-items') }}" method="GET" class="flex items-center justify-center w-full p-4">
     <div class="flex w-full max-w-4xl">
-        <input
-            type="text"
-            name="search"
-            placeholder="Search food items..."
-            class="w-full p-2 border border-brown-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-brown-50 text-brown-700 placeholder-brown-500"
-            value="{{ request()->input('search') }}">
-        <button
-            type="submit"
-            class="p-2 bg-green-500 text-white rounded-r-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
-            Search
-        </button>
+    <input type="text" name="search" value="{{ old('search') }}" placeholder="Search items..." class="w-full p-2 border border-brown-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-brown-50 text-brown-700 placeholder-brown-500"/>
+    <button type="submit" class="p-2 bg-green-500 text-white rounded-r-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Search</button>
     </div>
 </form>
+
 
 
 <!-- Categories -->
@@ -406,8 +398,11 @@
 
 
 
-{{--        @foreach ($groupedByCategory as $category => $foodItems)--}}
-{{--            <h2 class="text-2xl font-bold mb-4">{{ $category }}</h2>--}}
+{{--Search results--}}
+{{--        --}}
+{{--        @if($foodItems->isEmpty())--}}
+{{--            <p>No items found matching your search criteria.</p>--}}
+{{--        @else--}}
 {{--            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">--}}
 {{--                @foreach ($foodItems as $foodItem)--}}
 {{--                    <div class="bg-white p-6 rounded-lg shadow-lg dish-card m-8">--}}
@@ -427,10 +422,12 @@
 {{--                    </div>--}}
 {{--                @endforeach--}}
 {{--            </div>--}}
-{{--        @endforeach--}}
+{{--        @endif--}}
 
-    </div>
-</section>
+
+
+{{--    </div>--}}
+{{--</section>--}}
 
 
 

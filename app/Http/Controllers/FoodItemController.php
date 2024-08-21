@@ -34,24 +34,24 @@ class FoodItemController extends Controller
     }
 
 
-//    public function searchItem(Request $request)
-//    {
-//        $searchTerm = $request->input('search');
-//
-//        // Retrieve food items based on the search criteria
-//        $foodItems = FoodItem::where('title', 'LIKE', "%{$searchTerm}%")
-//            ->orWhere('description', 'LIKE', "%{$searchTerm}%")
-//            ->orWhere('category', 'LIKE', "%{$searchTerm}%")
-//            ->orWhere('price', 'LIKE', "%{$searchTerm}%")
-//            ->orWhere('quantity', 'LIKE', "%{$searchTerm}%")
-//            ->orWhere('tags', 'LIKE', "%{$searchTerm}%")
-//            ->get();
-//
-//        // Group food items by category
-//        $groupedByCategory = $foodItems->groupBy('category');
-//
-//        return view('all-items', compact('groupedByCategory', 'searchTerm'));
-//    }
+    public function searchItem(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        $searchTerm = $request->input('search');
+
+        // Build the query with conditionals
+        $foodItems = FoodItem::when($searchTerm, function($query, $searchTerm) {
+            $query->where('title', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('description', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('category', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('price', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('quantity', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('tags', 'LIKE', "%{$searchTerm}%");
+        })->get();
+
+        return view('all-items', compact('foodItems', 'searchTerm'));
+    }
+
+
 
 
 }
