@@ -94,11 +94,11 @@
             <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
             <div class="flex justify-between mt-10 mb-5">
                 <span class="font-semibold text-sm uppercase">Name</span>
-                <span class="font-semibold text-sm"></span>
+                <span class="font-semibold text-sm">{{Auth::user() -> name}}</span>
             </div>
             <div class="flex justify-between mt-10 mb-5">
                 <span class="font-semibold text-sm uppercase">Email</span>
-                <span class="font-semibold text-sm"></span>
+                <span class="font-semibold text-sm">{{Auth::user() -> email}}</span>
             </div>
 
             <div>
@@ -108,7 +108,7 @@
                 <select class="block p-2 text-gray-600 w-full text-sm">
                     <option>Standard Time (5 - 1hr)</option>
 
-{{--                    pick up time options should come starting from 1 hour from the current time till the supplier's closing time--}}
+    {{-- pick up time options should come starting from 1 hour from the current time till the supplier's closing time--}}
 
                 </select>
             </div>
