@@ -18,10 +18,15 @@ class FoodItemController extends Controller
 
 
     }
-    public function allItems(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    public function allItems(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $foodItems = FoodItem::all(); // Retrieve all FoodItems from the database
         $count = 0; // Default value if the user is not authenticated
+        $search = $request->input('search');
+
+        $foodItems = FoodItem::where('title', 'LIKE', "%{$search}%")
+            ->orWhere('supplier', 'LIKE', "%{$search}%")
+            ->get();
 
         if (Auth::check()) { // Check if the user is authenticated
             $user = Auth::user();
@@ -29,6 +34,7 @@ class FoodItemController extends Controller
         }
 
         return view('all-items', compact('foodItems', 'count'));
+
 
 
     }
