@@ -337,12 +337,31 @@
 
 <!-- Search Section -->
 
+
 <form action="{{ route('all-items') }}" method="GET" class="flex items-center justify-center w-full p-4">
     <div class="flex w-full max-w-4xl">
-    <input type="text" name="search" value="{{ old('search') }}" placeholder="Search items..." class="w-full p-2 border border-brown-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-brown-50 text-brown-700 placeholder-brown-500"/>
-    <button type="submit" class="p-2 bg-green-500 text-white rounded-r-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Search</button>
+        <input type="text" name="search" value="{{ old('search') }}" placeholder="Search items..." class="w-full p-2 border border-brown-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-brown-50 text-brown-700 placeholder-brown-500"/>
+        <button type="submit" class="p-2 bg-green-500 text-white rounded-r-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Search</button>
     </div>
 </form>
+
+
+
+{{--Search results--}}
+<section class="py-8 bg-gray-100">
+    <div class="container mx-auto">
+        @if($foodItems->isEmpty())
+            <p class="text-center font-sans text-gray-500 text-2xl mt-2 font-semibold">No items found matching your search criteria.</p>
+        @else
+                @include('fooditem')
+
+
+        @endif
+
+
+
+    </div>
+</section>
 
 
 
@@ -395,39 +414,8 @@
             </div>
         </div>
 
-
-
-
-{{--Search results--}}
-{{--        --}}
-{{--        @if($foodItems->isEmpty())--}}
-{{--            <p>No items found matching your search criteria.</p>--}}
-{{--        @else--}}
-{{--            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">--}}
-{{--                @foreach ($foodItems as $foodItem)--}}
-{{--                    <div class="bg-white p-6 rounded-lg shadow-lg dish-card m-8">--}}
-{{--                        <img src="{{ asset('storage/' . $foodItem->image) }}" alt="{{ $foodItem->title}}" class="w-full h-40 object-cover rounded-t-lg mb-4">--}}
-{{--                        <h3 class="text-xl font-bold mb-2">{{ $foodItem->title }}</h3>--}}
-{{--                        <h6 class="text-xl font-bold mb-2">{{ $foodItem->supplier }}</h6>--}}
-{{--                        <p class="text-gray-600 mb-2">LKR {{ number_format($foodItem->price, 2) }}</p>--}}
-{{--                        <span class="text-gray-600">({{ $foodItem->quantity }})</span>--}}
-{{--                        <div class="flex justify-between items-center mt-4">--}}
-{{--                            <div class="flex items-center">--}}
-{{--                                <button class="button-primary px-3 py-1 rounded-l-lg" onclick="updateQuantity(this, -1)">-</button>--}}
-{{--                                <input type="number" value="0" class="w-12 text-center border-t border-b">--}}
-{{--                                <button class="button-primary px-3 py-1 rounded-r-lg" onclick="updateQuantity(this, 1)">+</button>--}}
-{{--                            </div>--}}
-{{--                            <button class="button-primary py-2 px-4 rounded-lg">Add to Cart</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
-{{--        @endif--}}
-
-
-
-{{--    </div>--}}
-{{--</section>--}}
+    </div>
+</section>
 
 
 
@@ -462,13 +450,6 @@
 
 
 
-<!-- Food Listing Section -->
-<main class="container mx-auto mt-10">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Available food items </h2>
-
-    @include('fooditem')
-
-</main>
 
 
 <!-- Contact Section -->
