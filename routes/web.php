@@ -87,11 +87,19 @@ Route::get('paymentmethod', [DashboardController::class, 'paymentmethod'])
     ->middleware(['auth', 'verified']);
 
 
-Route::get('/pickup-scheduling', [PaymentController::class, 'showPickupSchedulingPage'])
-    ->name('pickup.scheduling');
+Route::get('/order-confirmation', [PaymentController::class, 'showOrderConfirmationPage'])
+    ->name('order.confirmation');
+
+Route::get('order-confirmation', [PaymentController::class, 'confirmationSummary'])
+    ->name('order.confirmation');
+
+Route::post('confirm_order',[PaymentController::class, 'confirm_order'])
+    ->middleware(['auth', 'verified']);
 
 Route::get('/online-payment', [PaymentController::class, 'showOnlinePaymentPage'])
     ->name('online.payment');
+
+
 
 
 Route::get('/supplier/dashboard', [SupplierDashboardController::class, 'index'])->name('supplier.dashboard');
