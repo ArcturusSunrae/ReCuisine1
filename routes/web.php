@@ -102,3 +102,6 @@ Route::get('/online-payment', [PaymentController::class, 'showOnlinePaymentPage'
 Route::get('/supplier/dashboard', [SupplierController::class, 'dashboard'])->name('supplier.dashboard');
 
 Route::get('/supplier/food-items', [SupplierController::class, 'foodItems'])->name('supplier.food-items');
+
+Route::get('/supplier/orders', [SupplierController::class, 'orders'])->name('supplier.supplier-orders');
+

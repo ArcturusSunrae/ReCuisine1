@@ -6,7 +6,7 @@
         <a href="{{ route('supplier.dashboard') }}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">
             Dashboard
         </a>
-        <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">
+        <a href="{{route('supplier.supplier-orders')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">
             Orders
         </a>
         <a href="{{ route('supplier.food-items') }}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">

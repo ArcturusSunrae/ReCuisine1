@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->integer('quantity')->nullable();
             $table->double('price')->nullable();
-            $table->string('status')->default('in progress');
+            $table->string('status')->default('Pending');
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('food_item_id');
