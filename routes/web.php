@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SupplierController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -87,14 +89,7 @@ Route::get('paymentmethod', [DashboardController::class, 'paymentmethod'])
     ->middleware(['auth', 'verified']);
 
 
-Route::get('/order-confirmation', [PaymentController::class, 'showOrderConfirmationPage'])
-    ->name('order.confirmation');
 
-Route::get('order-confirmation', [PaymentController::class, 'confirmationSummary'])
-    ->name('order.confirmation');
-
-Route::post('confirm_order',[PaymentController::class, 'confirm_order'])
-    ->middleware(['auth', 'verified']);
 
 Route::get('/online-payment', [PaymentController::class, 'showOnlinePaymentPage'])
     ->name('online.payment');
@@ -102,11 +97,8 @@ Route::get('/online-payment', [PaymentController::class, 'showOnlinePaymentPage'
 
 
 
-Route::get('/supplier/dashboard', [SupplierDashboardController::class, 'index'])->name('supplier.dashboard');
 
-Route::middleware(['auth', 'role:supplier'])->group(function () {
-    Route::get('/supplier/dashboard', function () {
-        return view('supplier.dashboard'); // Assuming 'supplier.dashboard' is the view file
-    })->name('supplier.dashboard');
-});
 
+Route::get('/supplier/dashboard', [SupplierController::class, 'dashboard'])->name('supplier.dashboard');
+
+Route::get('/supplier/food-items', [SupplierController::class, 'foodItems'])->name('supplier.food-items');

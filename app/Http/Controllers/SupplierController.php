@@ -11,15 +11,16 @@ class SupplierController extends Controller
         return view('supplier-form');
     }
 
-    public function updateSupplier(Request $request): \Illuminate\Http\RedirectResponse
-    {
-        // validate the request based on the form fields added in the form
-        if(auth()->check()){
-            auth()->user()->update([
-                'role' => 'supplier'
-            ]);
-        }
 
-        return redirect()->route(route: 'supplier');
+
+    public function dashboard()
+    {
+        return view('supplier.supplier-dashboard');
     }
+
+    public function foodItems()
+    {
+        return view('supplier.supplier-fooditems');
+    }
+
 }

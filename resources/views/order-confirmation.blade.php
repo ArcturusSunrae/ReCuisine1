@@ -23,7 +23,7 @@
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 py-6 border-y border-gray-100 mb-6">
             <div class="box group">
                 <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Pickup Date and Time</p>
-                <h6 class="font-semibold font-manrope text-2xl leading-9 text-black">Dec 01, 2023 </h6>
+                <h6 class="font-semibold font-manrope text-2xl leading-9 text-black"> </h6>
             </div>
 {{--            <div class="box group">--}}
 {{--                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Order</p>--}}
@@ -31,7 +31,7 @@
 {{--            </div>--}}
 
             <div class="box group">
-                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Order</p>
+                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Order Token</p>
                 <h6 class="font-semibold font-manrope text-2xl leading-9 text-black">{{$orderNumber}}</h6>
             </div>
 
@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="data ">
-            <p class="font-normal text-lg leading-8 text-gray-500 mb-11">We'll be sending a token to your email which you need to show when picking up your order.</p>
+            <p class="font-normal text-lg leading-8 text-gray-500 mb-11">Show the Order Token when picking up your order.</p>
             <h6 class="font-manrope font-bold text-2xl leading-9 text-black mb-3">Thank you for you order!</h6>
         </div>
     </div>
