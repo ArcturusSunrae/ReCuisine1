@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FoodItem;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -105,6 +106,8 @@ class DashboardController extends Controller
         // If the cart is not empty, proceed to the payment method page
         return view('paymentmethod');
     }
+
+
 
 
 

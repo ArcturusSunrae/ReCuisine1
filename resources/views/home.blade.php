@@ -299,9 +299,7 @@
     <div class="container mx-auto flex justify-between items-center p-4">
         <div class="flex items-center">
             <img src="images/logo.jpg" alt="ReCuisine Logo" class="h-12 w-12 mr-3">
-            <select class="ml-20 bg-white text-black p-2 rounded">
-                <option>Select Location</option>
-            </select>
+            @include('selectlocation')
         </div>
         <div class="flex items-center space-x-6">
             <a href="{{ route('home') }}" class="text-white">Home</a>

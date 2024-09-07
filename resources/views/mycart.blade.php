@@ -120,13 +120,35 @@
                     <span>LKR {{$value}}</span>
                 </div>
 
+{{--                <form action="{{ url('confirm_order') }}" method="POST">--}}
+{{--                    @csrf--}}
+{{--                    <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">--}}
+{{--                        Pay at PickUp--}}
+{{--                    </button>--}}
+{{--                </form>--}}
+                <div class="flex flex-wrap justify-center gap-3 py-3 px-3">
+
+                    <form action="{{ url('confirm_order') }}" method="POST">
+                        @csrf
+{{--                <a href="{{ url('order-confirmation') }}">--}}
+                    <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-5 px-10 text-sm text-white uppercase w-full">
+                        Pay at Pickup
+                    </button>
+{{--                </a>--}}
+                    </form>
+
                 <a href="{{ url('paymentmethod') }}">
-                    <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
-                        Checkout
+                    <button class="bg-gray-500 font-semibold hover:bg-gray-600 py-5 px-10 text-sm text-white uppercase w-full">
+                        Pay Online
                     </button>
                 </a>
+
+                </div>
+
             </div>
         </div>
+
+
     </div>
 </div>
 

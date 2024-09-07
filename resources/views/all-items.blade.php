@@ -301,9 +301,7 @@
     <div class="container mx-auto flex justify-between items-center p-4">
         <div class="flex items-center">
             <img src="images/logo.jpg" alt="ReCuisine Logo" class="h-12 w-12 mr-3">
-            <select class="ml-20 bg-white text-black p-2 rounded">
-                <option>Select Location</option>
-            </select>
+            @include('selectlocation')
         </div>
         <div class="flex items-center space-x-6">
             <a href="{{ route('home') }}" class="text-white">Home</a>
@@ -340,7 +338,7 @@
 
 <form action="{{ route('all-items') }}" method="GET" class="flex items-center justify-center w-full p-4">
     <div class="flex w-full max-w-4xl">
-        <input type="text" name="search" value="{{ old('search') }}" placeholder="Search items..." class="w-full p-2 border border-brown-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-brown-50 text-brown-700 placeholder-brown-500"/>
+        <input type="text" name="search" value="{{ old('search') }}" placeholder="Search Item..." class="w-full p-2 border border-brown-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-brown-50 text-brown-700 placeholder-brown-500"/>
         <button type="submit" class="p-2 bg-green-500 text-white rounded-r-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Search</button>
     </div>
 </form>

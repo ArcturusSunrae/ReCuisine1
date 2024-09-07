@@ -23,7 +23,7 @@
 
         <div class="flex flex-wrap justify-center gap-3">
             <label class="cursor-pointer">
-                <input type="radio" class="peer sr-only" name="paymentMethod" value="pickup" />
+                <input type="radio" class="peer sr-only" name="paymentMethod" value="order" />
                 <div class="w-72 max-w-xl rounded-md bg-white p-5 text-black ring-2 ring-transparent transition-all hover:shadow peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
                     <div class="flex items-center justify-between text-2xl">
                         <p>Pay at Pickup</p>
@@ -42,8 +42,10 @@
         </div>
 
         <div class="flex flex-wrap justify-center gap-3">
-            <button onclick="proceed()" class="font-semibold text-2xl mt-4 px-4 py-2 bg-green-500 text-white rounded ">Proceed</button>
+            <button onclick="proceed()" class="font-semibold text-2xl mt-4 px-4 py-2 bg-green-500 text-white rounded ">Confirm Order</button>
         </div>
+
+
 
         <a href="{{ url('mycart') }}" class="flex font-semibold text-indigo-600 text-sm mt-3">
             <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">
@@ -58,8 +60,8 @@
     function proceed() {
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-        if (paymentMethod === 'pickup') {
-            window.location.href = "{{ route('pickup.scheduling') }}";
+        if (paymentMethod === 'order') {
+            window.location.href = "{{ route('order.confirmation') }}";
         } else if (paymentMethod === 'online') {
             window.location.href = "{{ route('online.payment') }}";
         }

@@ -7,6 +7,11 @@
                 <h3 class="text-xl font-bold mb-2">{{ $fooditem->title }}</h3>
                 <p class="text-gray-600 mb-2">LKR {{ $fooditem->price }}</p>
 
+{{--                Discounted price (should be there only if the discounted price is available, and also there should be a strikethrough in the
+                     original price if the discounted price is there--}}
+{{--                <p class="text-green-600 font-bold text-xl mb-2">LKR {{ $fooditem->discounted_price }}</p>--}}
+
+
                 <div class="flex justify-between items-center">
                     <form action="{{ url('add_cart', $fooditem->id) }}" method="POST" class="flex items-center">
                         @csrf <!-- This is important for security reasons (CSRF protection) -->
