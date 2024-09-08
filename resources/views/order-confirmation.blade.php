@@ -9,107 +9,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
 </head>
-<body>
+<body class="bg-gradient-to-br from-green-100 via-green-50 to-brown-50 text-gray-900 min-h-screen flex items-center justify-center">
 
-<section class="py-24 relative">
-    <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+<!-- Fancy Box with Shadows and Border -->
+<section class="relative max-w-5xl mx-auto p-10 bg-white shadow-2xl rounded-3xl border border-green-300 duration-300 ease-in-out">
+    <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-green-600 via-brown-500 to-yellow-400 rounded-t-3xl"></div>
 
-        <h2 class="font-manrope font-bold text-3xl sm:text-4xl leading-10 text-black mb-11">
-            Your Order Confirmed
+    <!-- Order Confirmation Heading -->
+    <div class="text-center mb-8">
+        <h2 class="font-manrope font-extrabold text-5xl sm:text-6xl text-green-700 mb-5">
+            Order Confirmed!
         </h2>
-        <h6 class="font-medium text-xl leading-8 text-black mb-3">Hello, {{Auth::user() -> name}}</h6>
-        <p class="font-normal text-lg leading-8 text-gray-500 mb-11">Your order has been completed. Please pick up your order at the given time.</p>
-        <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 py-6 border-y border-gray-100 mb-6">
-            <div class="box group">
-                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Pickup Date and Time</p>
-                <h6 class="font-semibold font-manrope text-2xl leading-9 text-black"> </h6>
-            </div>
-{{--            <div class="box group">--}}
-{{--                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Order</p>--}}
-{{--                <h6 class="font-semibold font-manrope text-2xl leading-9 text-black">{{$order->order_number}}</h6>--}}
-{{--            </div>--}}
+        <h6 class="font-medium text-2xl text-green-600 mb-4">Hello, {{Auth::user()->name}}</h6>
+        <p class="font-normal text-lg text-gray-500 mb-8">Your order has been completed. Please pick it up at the scheduled time.</p>
+    </div>
 
-            <div class="box group">
-                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Order Token</p>
-                <h6 class="font-semibold font-manrope text-2xl leading-9 text-black">{{$orderNumber}}</h6>
-            </div>
-
-            <div class="box group">
-                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Payment Method</p>
-
-                <h6 class="font-semibold font-manrope text-2xl leading-9 text-black">Pay at Pickup</h6>
-
-            </div>
-            <div class="box group">
-                <p class="font-normal text-base leading-7 text-gray-500 mb-3 transition-all duration-500 group-hover:text-gray-700">Supplier</p>
-                <h6 class="font-semibold font-manrope text-2xl leading-9 text-black">
-{{--                    Supplier Name--}}
-                </h6>
-            </div>
+    <!-- Fancy Order Details Box -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-8 border-y border-gray-200 mb-10 bg-gradient-to-tr from-brown-100 to-green-100 p-6 rounded-lg shadow-inner">
+        <div class="text-center group">
+            <p class="font-semibold text-base text-gray-700 mb-2">Pickup Date and Time</p>
+            <h6 class="font-bold text-2xl text-green-800"></h6>
         </div>
-
-        <?php
-        $value = 0;
-        ?>
-
-        @foreach($cart as $cartItem)
-
-        <div class="grid grid-cols-7 w-full pb-6 border-b border-gray-100">
-            <div class="col-span-7 min-[500px]:col-span-2 md:col-span-1">
-                <img src="https://i.ibb.co/TTnzMTf/Rectangle-21.png" alt="Food Item Image" class="md:hidden w-full h-full object-center object-cover" />
-            </div>
-            <div
-                class="col-span-7 min-[500px]:col-span-5 md:col-span-6 min-[500px]:pl-5 max-sm:mt-5 flex flex-col justify-center">
-                <div class="flex flex-col min-[500px]:flex-row min-[500px]:items-center justify-between">
-                    <div class="">
-                        <h5 class="font-manrope font-semibold text-2xl leading-9 text-black mb-6">{{$cartItem -> fooditem -> title}}
-                        </h5>
-                        <p class="font-normal text-xl leading-8 text-gray-500">Quantity : <span
-                                class="text-black font-semibold">{{$cartItem -> quantity}}</span></p>
-                    </div>
-
-                    <h5 class="font-manrope font-semibold text-3xl leading-10 text-black sm:text-right mt-3">
-                        LKR {{$cartItem -> price}}
-                    </h5>
-                </div>
-            </div>
+        <div class="text-center group">
+            <p class="font-semibold text-base text-gray-700 mb-2">Order Token</p>
+            <h6 class="font-bold text-2xl text-green-800">{{$orderNumber}}</h6>
         </div>
+        <div class="text-center group">
+            <p class="font-semibold text-base text-gray-700 mb-2">Payment Method</p>
+            @if($order->payment_status === 'Pay at Pickup')
+                <h6 class="font-bold text-2xl text-green-800">Pay at Pickup</h6>
+            @elseif($order->payment_status === 'Paid Online')
+                <h6 class="font-bold text-2xl text-green-800">Online</h6>
+            @else
+                <h6 class="font-bold text-2xl text-red-800">Unknown</h6>
+            @endif
 
-                <?php
-                $value += $cartItem->price;
-                ?>
-
-        @endforeach
-
-
-        <div class="flex items-center justify-center sm:justify-end w-full my-6">
-            <div class=" w-full">
-                <div class="flex items-center justify-between mb-6">
-
-                </div>
-                <div class="flex items-center justify-between mb-6">
-
-                </div>
-                <div class="flex items-center justify-between mb-6">
-
-                </div>
-                <div class="flex items-center justify-between mb-6">
-
-                </div>
-                <div class="flex items-center justify-between py-6 border-y border-gray-100">
-                    <p class="font-manrope font-semibold text-2xl leading-9 text-gray-900">Total</p>
-                    <p class="font-manrope font-bold text-2xl leading-9 text-indigo-600">LKR {{$value}}</p>
-                </div>
-            </div>
         </div>
-        <div class="data ">
-            <p class="font-normal text-lg leading-8 text-gray-500 mb-11">Show the Order Token when picking up your order.</p>
-            <h6 class="font-manrope font-bold text-2xl leading-9 text-black mb-3">Thank you for you order!</h6>
+        <div class="text-center group">
+            <p class="font-semibold text-base text-gray-700 mb-2">Supplier</p>
+            <h6 class="font-bold text-2xl text-green-800">Supplier Name</h6>
         </div>
     </div>
-</section>
 
+    <!-- Cart Items Loop -->
+    <div>
+        <?php $value = 0; ?>
+        @foreach($cart as $cartItem)
+            <div class="grid grid-cols-7 gap-4 w-full pb-6 border-b border-gray-300">
+                <div class="col-span-2">
+                    <img src="https://i.ibb.co/TTnzMTf/Rectangle-21.png" alt="Food Item" class="w-full h-full object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out" />
+                </div>
+                <div class="col-span-5 flex flex-col justify-between">
+                    <div class="flex justify-between">
+                        <div>
+                            <h5 class="font-manrope font-bold text-2xl text-green-700 mb-2">{{$cartItem->fooditem->title}}</h5>
+                            <p class="font-normal text-gray-600">Quantity: <span class="text-black font-semibold">{{$cartItem->quantity}}</span></p>
+                        </div>
+                        <h5 class="font-manrope font-bold text-3xl text-brown-600">LKR {{$cartItem->price}}</h5>
+                    </div>
+                </div>
+            </div>
+                <?php $value += $cartItem->price; ?>
+        @endforeach
+    </div>
+
+    <!-- Order Summary -->
+    <div class="mt-8 text-right">
+        <div class="py-6 border-t border-b border-gray-200">
+            <p class="font-manrope font-semibold text-2xl text-gray-900">Total</p>
+            <p class="font-manrope font-extrabold text-3xl text-green-600">LKR {{$value}}</p>
+        </div>
+    </div>
+
+    <!-- Thank You Message -->
+    <div class="text-center mt-10">
+        <p class="font-normal text-lg text-gray-600 mb-4">Show the Order Token when picking up your order.</p>
+        <h6 class="font-manrope font-extrabold text-2xl text-brown-700">Thank you for your order!</h6>
+    </div>
+</section>
 
 </body>
 </html>

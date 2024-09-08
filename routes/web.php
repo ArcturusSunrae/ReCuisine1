@@ -4,6 +4,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\InventoryController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -82,6 +84,12 @@ Route::post('add_cart/{id}', [DashboardController::class, 'add_cart'])
 Route::get('mycart', [DashboardController::class, 'mycart'])
     ->middleware(['auth', 'verified']);
 
+Route::post('confirm_order', [PaymentController::class, 'confirm_order'])
+    ->name('confirm_order');
+
+
+
+
 Route::post('remove_cart/{id}', [DashboardController::class, 'remove_cart'])
     ->middleware(['auth', 'verified']);
 
@@ -91,12 +99,19 @@ Route::get('paymentmethod', [DashboardController::class, 'paymentmethod'])
 
 
 
-Route::get('/online-payment', [PaymentController::class, 'showOnlinePaymentPage'])
-    ->name('online.payment');
 
 
 
+Route::get('/inventory', [InventoryController::class, 'getInventory'])
+    ->name('inventory.index');
 
+Route::get('/inventory/discount', [InventoryController::class, 'applyDiscount'])
+    ->name('inventory.discount');
+
+Route::controller(PaymentController::class)->group(function(){
+    Route::get('stripe/{value}', 'stripe');
+    Route::post('stripe/{value}', 'stripePost')->name('stripe.post');
+});
 
 
 Route::get('/supplier/dashboard', [SupplierController::class, 'dashboard'])->name('supplier.dashboard');

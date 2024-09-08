@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->double('price');
             $table->string('supplier');
             $table->string('category');
-            $table->integer('quantity');
+            $table->integer('stock');
             $table->text('tags');
             $table->softDeletes();
             $table->timestamps();
