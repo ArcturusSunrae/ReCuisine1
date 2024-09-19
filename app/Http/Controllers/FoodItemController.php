@@ -17,6 +17,7 @@ class FoodItemController extends Controller
         return view('home', compact('foodItems'));
 
 
+
     }
     public function allItems(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
@@ -50,7 +51,7 @@ class FoodItemController extends Controller
                 ->orWhere('description', 'LIKE', "%{$searchTerm}%")
                 ->orWhere('category', 'LIKE', "%{$searchTerm}%")
                 ->orWhere('price', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('quantity', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('stock', 'LIKE', "%{$searchTerm}%")
                 ->orWhere('tags', 'LIKE', "%{$searchTerm}%");
         })->get();
 

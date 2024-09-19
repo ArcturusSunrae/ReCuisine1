@@ -17,113 +17,53 @@ class FoodItemsTableSeeder extends Seeder
         FoodItem::factory()->create([
             'title' => 'Burger',
             'description' => 'A delicious burger',
-            'price' => 10.00,
+            'price' => 400.00,
             'supplier' => 'Burger King',
             'category' => 'Fast Food',
-            'quantity' => 100,
+            'stock' => 100,
             'tags' => 'burger, fast food, delicious',
         ]);
 
-
         FoodItem::factory()->create([
-            'title' => 'Pizza Margherita',
-            'description' => 'Classic pizza with fresh tomatoes and mozzarella cheese',
-            'price' => 15.00,
+            'title' => 'Pizza',
+            'description' => 'A delicious pizza',
+            'price' => 500.00,
             'supplier' => 'Pizza Hut',
-            'category' => 'Pizza',
-            'quantity' => 50,
-            'tags' => 'pizza, margherita, Italian',
+            'category' => 'Fast Food',
+            'stock' => 100,
+            'tags' => 'pizza, fast food, delicious',
         ]);
 
         FoodItem::factory()->create([
-            'title' => 'Sushi Platter',
-            'description' => 'An assortment of fresh sushi and sashimi',
-            'price' => 25.00,
-            'supplier' => 'Sushi Express',
-            'category' => 'Japanese',
-            'quantity' => 30,
-            'tags' => 'sushi, sashimi, Japanese, seafood',
+            'title' => 'Fried Chicken',
+            'description' => 'A delicious fried chicken',
+            'price' => 350.00,
+            'supplier' => 'KFC',
+            'category' => 'Fast Food',
+            'stock' => 100,
+            'tags' => 'fried chicken, fast food, delicious',
         ]);
 
         FoodItem::factory()->create([
-            'title' => 'Tandoori Chicken',
-            'description' => 'Spicy and flavorful grilled chicken',
-            'price' => 12.50,
-            'supplier' => 'Tandoori Palace',
-            'category' => 'Indian',
-            'quantity' => 60,
-            'tags' => 'tandoori, chicken, Indian, spicy',
+            'title' => 'Spaghetti',
+            'description' => 'A delicious spaghetti',
+            'price' => 650.00,
+            'supplier' => 'Jollibee',
+            'category' => 'Fast Food',
+            'stock' => 100,
+            'tags' => 'spaghetti, fast food, delicious',
         ]);
 
         FoodItem::factory()->create([
-            'title' => 'Caesar Salad',
-            'description' => 'Crisp romaine lettuce with Caesar dressing',
-            'price' => 8.00,
-            'supplier' => 'Healthy Bites',
-            'category' => 'Salad',
-            'quantity' => 40,
-            'tags' => 'salad, Caesar, healthy, vegetarian',
-        ]);
-
-        FoodItem::factory()->create([
-            'title' => 'Spaghetti Bolognese',
-            'description' => 'Traditional Italian pasta with rich meat sauce',
-            'price' => 13.00,
-            'supplier' => 'Pasta House',
-            'category' => 'Pasta',
-            'quantity' => 70,
-            'tags' => 'pasta, Bolognese, Italian, meat',
-        ]);
-
-        FoodItem::factory()->create([
-            'title' => 'Grilled Salmon',
-            'description' => 'Tender salmon fillet with lemon and herbs',
-            'price' => 20.00,
-            'supplier' => 'Seafood Delight',
-            'category' => 'Seafood',
-            'quantity' => 25,
-            'tags' => 'salmon, grilled, seafood, healthy',
-        ]);
-
-        FoodItem::factory()->create([
-            'title' => 'Chocolate Cake',
-            'description' => 'Rich and moist chocolate cake with ganache frosting',
-            'price' => 7.00,
-            'supplier' => 'Sweet Treats',
+            'title' => 'Ice Cream',
+            'description' => 'A delicious ice cream',
+            'price' => 250.00,
+            'supplier' => 'McDonalds',
             'category' => 'Dessert',
-            'quantity' => 80,
-            'tags' => 'cake, chocolate, dessert, sweet',
+            'stock' => 100,
+            'tags' => 'ice cream, dessert, delicious',
         ]);
 
-        FoodItem::factory()->create([
-            'title' => 'Pad Thai',
-            'description' => 'Stir-fried noodles with shrimp, tofu, and peanuts',
-            'price' => 14.00,
-            'supplier' => 'Thai Spice',
-            'category' => 'Thai',
-            'quantity' => 45,
-            'tags' => 'pad thai, noodles, Thai, spicy',
-        ]);
-
-        FoodItem::factory()->create([
-            'title' => 'Beef Tacos',
-            'description' => 'Soft tortillas filled with seasoned beef and fresh toppings',
-            'price' => 9.00,
-            'supplier' => 'Taco Time',
-            'category' => 'Mexican',
-            'quantity' => 90,
-            'tags' => 'tacos, beef, Mexican, spicy',
-        ]);
-
-        FoodItem::factory()->create([
-            'title' => 'Mango Smoothie',
-            'description' => 'Refreshing smoothie made with ripe mangoes',
-            'price' => 5.50,
-            'supplier' => 'Smoothie Bar',
-            'category' => 'Beverage',
-            'quantity' => 100,
-            'tags' => 'smoothie, mango, beverage, healthy',
-        ]);
     }
 
 

@@ -17,9 +17,19 @@
 
     <!-- Order Confirmation Heading -->
     <div class="text-center mb-8">
+        <a href="{{ route('home') }}" class="flex font-bold text-green-600 text-lg items-center">
+            <svg class="fill-current mr-2 text-black w-5" viewBox="0 0 448 512">
+                <path
+                    d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z"/>
+            </svg>
+        </a>
         <h2 class="font-manrope font-extrabold text-5xl sm:text-6xl text-green-700 mb-5">
             Order Confirmed!
         </h2>
+
         <h6 class="font-medium text-2xl text-green-600 mb-4">Hello, {{Auth::user()->name}}</h6>
         <p class="font-normal text-lg text-gray-500 mb-8">Your order has been completed. Please pick it up at the scheduled time.</p>
     </div>
@@ -46,8 +56,8 @@
 
         </div>
         <div class="text-center group">
-            <p class="font-semibold text-base text-gray-700 mb-2">Supplier</p>
-            <h6 class="font-bold text-2xl text-green-800">Supplier Name</h6>
+            <p class="font-semibold text-base text-gray-700 mb-2">Supplier Name</p>
+            <h6 class="font-bold text-2xl text-green-800">Supplier</h6>
         </div>
     </div>
 
@@ -57,7 +67,7 @@
         @foreach($cart as $cartItem)
             <div class="grid grid-cols-7 gap-4 w-full pb-6 border-b border-gray-300">
                 <div class="col-span-2">
-                    <img src="https://i.ibb.co/TTnzMTf/Rectangle-21.png" alt="Food Item" class="w-full h-full object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out" />
+                    <img src="images/FoodImage.png" alt="Food Item" class="w-full h-full object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out" />
                 </div>
                 <div class="col-span-5 flex flex-col justify-between">
                     <div class="flex justify-between">
@@ -86,6 +96,9 @@
         <p class="font-normal text-lg text-gray-600 mb-4">Show the Order Token when picking up your order.</p>
         <h6 class="font-manrope font-extrabold text-2xl text-brown-700">Thank you for your order!</h6>
     </div>
+
+
+
 </section>
 
 </body>

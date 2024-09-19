@@ -22,7 +22,7 @@
             <a href="#" class="text-green-700 font-semibold border-b-2 border-green-700">Sign Up</a>
         </div>
 
-        <form action="{{ route('register_supplier.update') }}" method="POST" class="space-y-6">
+        <form action="{{ route('register_supplier.store') }}" method="POST" class="space-y-6">
             @csrf
             <div>
                 <label for="business_name" class="block text-sm font-medium text-gray-700">Name of the Business</label>

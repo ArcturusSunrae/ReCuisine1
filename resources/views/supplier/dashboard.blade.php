@@ -66,7 +66,7 @@
                         <td class="py-3 px-4">John Doe</td>
                         <td class="py-3 px-4">Fish Bun</td>
                         <td class="py-3 px-4">3</td>
-                        <td class="py-3 px-4">45.00</td>
+                        <td class="py-3 px-4">$45.00</td>
                         <td class="py-3 px-4"><span class="text-yellow-500">Pending</span></td>
                         <td class="py-3 px-4">
                             <button class="bg-green-500 text-white px-4 py-2 rounded-lg">Completed</button>
@@ -74,42 +74,6 @@
 
                     </tr>
                     <!-- Repeat for each order -->
-                    <tr>
-                        <td class="py-3 px-4">#23659</td>
-                        <td class="py-3 px-4">Janet Doe</td>
-                        <td class="py-3 px-4">Chicken Burger</td>
-                        <td class="py-3 px-4">2</td>
-                        <td class="py-3 px-4">30.00</td>
-                        <td class="py-3 px-4"><span class="text-yellow-500">Pending</span></td>
-                        <td class="py-3 px-4">
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-lg">Completed</button>
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">Cancelled</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 px-4">#23660</td>
-                        <td class="py-3 px-4">Alex Smith</td>
-                        <td class="py-3 px-4">Chocolate Cake</td>
-                        <td class="py-3 px-4">1</td>
-                        <td class="py-3 px-4">20.00</td>
-                        <td class="py-3 px-4"><span class="text-yellow-500">Pending</span></td>
-                        <td class="py-3 px-4">
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-lg">Completed</button>
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">Cancelled</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 px-4">#23661</td>
-                        <td class="py-3 px-4">James Bond</td>
-                        <td class="py-3 px-4">Pineapple Pastry</td>
-                        <td class="py-3 px-4">4</td>
-                        <td class="py-3 px-4">60.00</td>
-                        <td class="py-3 px-4"><span class="text-yellow-500">Pending</span></td>
-                        <td class="py-3 px-4">
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-lg">Completed</button>
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">Cancelled</button>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>

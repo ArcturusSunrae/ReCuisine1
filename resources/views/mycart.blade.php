@@ -50,7 +50,7 @@
             @foreach($cart as $cartItem)
                 <div class="md:flex items-center py-8 md:py-10 lg:py-8 border-t border-gray-200">
                     <div class="md:w-4/12 2xl:w-1/4 w-full">
-                        <img src="https://i.ibb.co/TTnzMTf/Rectangle-21.png" alt="Food Item Image" class="w-full h-full object-center object-cover rounded-lg shadow-md" />
+                        <img src="images/FoodImage.png" alt="Food Item Image" class="w-full h-full object-center object-cover rounded-lg shadow-md" />
                     </div>
                     <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
                         <div class="flex items-center justify-between w-full">

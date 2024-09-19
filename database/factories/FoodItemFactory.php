@@ -18,7 +18,7 @@ class FoodItemFactory extends Factory
             'price' => 50.00,
             'supplier' => 'Sample Supplier',
             'category' => 'Sample Category',
-            'quantity' => 10,
+            'stock' => 10,
             'tags' => 'sample, food, item',
             //'image' => 'default.jpg', // Add your logic to handle images
             //'rating' => $this->faker->numberBetween(1, 5),

@@ -72,8 +72,6 @@ class PaymentController extends Controller
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-
-
         Stripe\Charge::create ([
             "amount" => $value * 100,
             "currency" => "lkr",
@@ -92,8 +90,6 @@ class PaymentController extends Controller
 
         foreach ($cart as $cartItem){
             $order = new Order();
-            //$order->order_number = uniqid('Order-');
-            //$order->order_number = '#' . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
             $order->name = $name;
             $order->email = $email;
             $order->quantity = $cartItem->quantity;
@@ -109,8 +105,6 @@ class PaymentController extends Controller
 
         return view('order-confirmation', compact('cart', 'order'), ['orderNumber' => $orderNumber]);
     }
-
-
 
 
 }

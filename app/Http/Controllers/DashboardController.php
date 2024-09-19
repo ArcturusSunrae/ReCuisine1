@@ -14,6 +14,7 @@ class DashboardController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
+
         $foodItems = FoodItem::all();
         //return view('home', compact('foodItems'));
 
@@ -49,8 +50,6 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('success', 'Item added to cart successfully!')->with('count', $count);
     }
-
-
 
 
     public function mycart()
@@ -104,12 +103,9 @@ class DashboardController extends Controller
         }
 
         // If the cart is not empty, proceed to the payment method page
-        return view('paymentmethod');
+        //return view('paymentmethod');
+
+
     }
-
-
-
-
-
-
 }
+

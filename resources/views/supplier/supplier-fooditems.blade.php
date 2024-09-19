@@ -16,7 +16,7 @@
 
         <div class="p-6">
             <p class="text-gray-700 mb-4">
-                By default, a 50% discount will be applied when 30% or less of the inventory remains three hours before closing time.
+                By default, a 50% discount will be applied when 30% or more of the inventory remains three hours before closing time.
             </p>
             <h2 class="text-2xl font-bold mb-4">Customize Discount</h2>
             <form method="POST"
@@ -52,6 +52,13 @@
 
 {{--    <div class="p-6">--}}
         <h2 class="text-2xl font-bold mb-4">Food Items</h2>
+
+{{--        <div class="flex justify-end mb-4">--}}
+{{--            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">--}}
+{{--                Add Items--}}
+{{--            </button>--}}
+{{--        </div>--}}
+
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
         <table class="min-w-full bg-white">
             <thead class="bg-gray-200 text-gray-600">
@@ -59,35 +66,43 @@
                 <th class="py-2">Name</th>
                 <th class="py-2">Description</th>
                 <th class="py-2">Category</th>
-                <th class="py-2">Quantity</th>
+                <th class="py-2">Available Stock</th>
                 <th class="py-2">Actions</th>
             </tr>
             </thead>
             <tbody>
-{{--            @foreach($foodItems as $item)--}}
+            <div class="flex justify-end mb-4">
+
+                    <a href="{{ route('supplier.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Add Items
+                    </a>
+            @foreach($foodItems as $fooditem)
                 <tr>
                     <td class="py-3 px-4 text-center">
-{{--                        {{ $item->name }}--}}
-                        Fish bun
+                        {{ $fooditem->title }}
+{{--                        Fish bun--}}
                     </td>
                     <td class="py-3 px-4 text-center">
-{{--                        {{ $item->description }}--}}
-                        Tasty bun
+                        {{ $fooditem->description }}
+{{--                        Tasty bun--}}
                     </td>
                     <td class="py-3 px-4 text-center">
-{{--                        {{ $item->category }}--}}
-                        Pastry
+                        {{ $fooditem->category }}
+{{--                        Pastry--}}
                     </td>
                     <td class="py-3 px-4 text-center">
-{{--                        {{ $item->quantity }}--}}
-                        50
+                        {{ $fooditem->stock }}
+{{--                        50--}}
                     </td>
                     <td class="py-3 px-1 text-center">
                         <a href="
-{{--                        {{ route('supplier.food-items.edit', $item->id) }}--}}
+{{--                        {{ route('supplier.food-items.show', $fooditem->id) }}--}}
+                        " class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-7 py-2 rounded">Show</a>
+                        <a href="
+                        {{ route('supplier.edit', $fooditem->id) }}
                         " class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-7 py-2 rounded">Edit</a>
                         <form action="
-{{--                        {{ route('supplier.food-items.destroy', $item->id) }}--}}
+{{--                        {{ route('supplier.food-items.destroy', $fooditem->id) }}--}}
                         " method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
@@ -95,7 +110,7 @@
                         </form>
                     </td>
                 </tr>
-{{--            @endforeach--}}
+            @endforeach
             </tbody>
         </table>
         </div>
