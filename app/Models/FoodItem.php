@@ -15,19 +15,20 @@ class FoodItem extends Model
         'title',
         'description',
         'price',
+        'supplier_id',
         'supplier',
         'category',
         'tags',
         'stock',
 
         'discount_rate',
-        'inventory_threshold',
-        'time_before_closing',
+//        'inventory_threshold',
+//        'time_before_closing',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // Relationship to the 'orders' table
@@ -43,16 +44,46 @@ class FoodItem extends Model
         return $this->hasMany(PosSale::class);
     }
 
-    public function applyInventoryDiscount()
-    {
-        $currentStock = $this->stock;
-        $threshold = $this->inventory_threshold;
 
-        if ($currentStock <= ($this->stock * ($threshold / 100))) {
-            $this->price = $this->price * (1 - ($this->discount_rate / 100));
-            $this->save();
+
+
+    public function applyDiscount()
+    {
+        $supplier = $this->user;
+        $current_time = now();
+
+        // If the supplier has set a closing time
+        if ($supplier->closing_time) {
+            $closing_time = \Carbon\Carbon::parse($supplier->closing_time);
+            $closing_time_today = $closing_time->copy()->setDate($current_time->year, $current_time->month, $current_time->day);
+
+            // Calculate the 3-hour discount window
+            $discount_start_time = $closing_time_today->subHours(3);
+
+            if ($current_time->between($discount_start_time, $closing_time_today)) {
+                // Apply the 50% discount
+                $this->discount_rate = 50;
+                $this->save();
+            } else {
+                // Reset discount if outside the 3-hour window
+                $this->discount_rate = 0;
+                $this->save();
+            }
         }
     }
+
+
+//
+//    public function applyInventoryDiscount()
+//    {
+//        $currentStock = $this->stock;
+//        $threshold = $this->inventory_threshold;
+//
+//        if ($currentStock <= ($this->stock * ($threshold / 100))) {
+//            $this->price = $this->price * (1 - ($this->discount_rate / 100));
+//            $this->save();
+//        }
+//    }
 
 
 

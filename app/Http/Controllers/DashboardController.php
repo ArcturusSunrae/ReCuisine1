@@ -6,6 +6,7 @@ use App\Models\FoodItem;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\User;
+use App\Enums\Role;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,32 @@ class DashboardController extends Controller
         }
 
         return view('home', compact('foodItems', 'count'));
+
+
+    }
+
+    public function authenticated()
+    {
+
+
+        $user = Auth::user();  // Get the authenticated user
+
+        if ($user->role === Role::admin->value) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        elseif ($user->role === Role::supplier->value) {
+            return redirect()->route('supplier.dashboard');
+        }
+
+        elseif ($user->role === Role::customer->value) {
+            return redirect()->route('dashboard');
+        }
+
+       //dd($user->role);
+
+
+        return redirect()->route('home');  // Fallback in case no role is matched
 
 
     }

@@ -14,11 +14,14 @@ class FoodItemsTableSeeder extends Seeder
         // FoodItem::factory(10)->create();
 
 
+
+
         FoodItem::factory()->create([
             'title' => 'Burger',
             'description' => 'A delicious burger',
             'price' => 400.00,
-            'supplier' => 'Burger King',
+            'supplier_id' => '5',
+            'supplier' => 'Subway',
             'category' => 'Fast Food',
             'stock' => 100,
             'tags' => 'burger, fast food, delicious',
@@ -28,7 +31,8 @@ class FoodItemsTableSeeder extends Seeder
             'title' => 'Pizza',
             'description' => 'A delicious pizza',
             'price' => 500.00,
-            'supplier' => 'Pizza Hut',
+            'supplier_id' => '5',
+            'supplier' => 'Subway',
             'category' => 'Fast Food',
             'stock' => 100,
             'tags' => 'pizza, fast food, delicious',
@@ -38,7 +42,8 @@ class FoodItemsTableSeeder extends Seeder
             'title' => 'Fried Chicken',
             'description' => 'A delicious fried chicken',
             'price' => 350.00,
-            'supplier' => 'KFC',
+            'supplier_id' => '5',
+            'supplier' => 'Subway',
             'category' => 'Fast Food',
             'stock' => 100,
             'tags' => 'fried chicken, fast food, delicious',
@@ -48,7 +53,8 @@ class FoodItemsTableSeeder extends Seeder
             'title' => 'Spaghetti',
             'description' => 'A delicious spaghetti',
             'price' => 650.00,
-            'supplier' => 'Jollibee',
+            'supplier_id' => '4',
+            'supplier' => 'Supplier',
             'category' => 'Fast Food',
             'stock' => 100,
             'tags' => 'spaghetti, fast food, delicious',
@@ -58,7 +64,8 @@ class FoodItemsTableSeeder extends Seeder
             'title' => 'Ice Cream',
             'description' => 'A delicious ice cream',
             'price' => 250.00,
-            'supplier' => 'McDonalds',
+            'supplier_id' => '4',
+            'supplier' => 'Supplier',
             'category' => 'Dessert',
             'stock' => 100,
             'tags' => 'ice cream, dessert, delicious',

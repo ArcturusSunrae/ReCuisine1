@@ -16,7 +16,7 @@
 
         <div class="p-6">
             <p class="text-gray-700 mb-4">
-                By default, a 50% discount will be applied when 30% or more of the inventory remains three hours before closing time.
+                By default, a 50% discount will be applied two hours before closing time.
             </p>
             <h2 class="text-2xl font-bold mb-4">Customize Discount</h2>
             <form method="POST"
@@ -30,12 +30,7 @@
 {{--                {{ $discountSettings->discount_rate }}--}}
                 " class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="inventory_threshold">Inventory Threshold (%)</label>
-                    <input type="number" name="inventory_threshold" id="inventory_threshold" value="
-{{--                {{ $discountSettings->inventory_threshold }}--}}
-                " class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="time_before_closing">Time Before Closing (Hours)</label>
                     <input type="number" name="time_before_closing" id="time_before_closing" value="

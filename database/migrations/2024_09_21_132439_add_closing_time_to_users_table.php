@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedTinyInteger('role')->default(2); // Default to Customer (2) based on your enum
+            $table->time('closing_time')->nullable();  // Assuming only suppliers need this
         });
     }
 

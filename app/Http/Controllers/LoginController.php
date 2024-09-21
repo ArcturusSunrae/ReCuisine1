@@ -23,13 +23,35 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        if ($user->role === \App\Enums\Role::supplier->value) {
+        elseif ($user->role === \App\Enums\Role::supplier->value) {
             return redirect()->route('supplier.dashboard');
         }
 
+        elseif ($user->role === \App\Enums\Role::customer->value) {
+            return redirect()->route('dashboard');
+        }
+
         // Default redirect
-        return redirect()->route('home');
+       // return redirect('/home');
     }
+
+
+
+//    public function authenticated(Request $request, $user)
+//    {
+//        // Check user role using Enums and redirect accordingly
+//        if ($user->role === Role::admin) {
+//            return redirect()->route('admin.dashboard');
+//        } elseif ($user->role === Role::supplier) {
+//            return redirect()->route('supplier.dashboard');
+//        } elseif ($user->role === Role::customer) {
+//            return redirect()->route('dashboard'); // or customer-specific route if different
+//        }
+//
+//
+//        // Default fallback in case roles aren't matched
+//        return redirect('/home');
+//    }
 
 
 

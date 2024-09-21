@@ -15,8 +15,8 @@ class CreatePosSalesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('food_item_id');  // Link to the food item
             $table->integer('quantity_sold');                 // Quantity sold in the POS system
-            $table->double('total_amount');              // Total amount for the POS sale
-            $table->timestamp('sale_time');              // Date and time of the sale
+//            $table->double('total_amount');              // Total amount for the POS sale
+//            $table->timestamp('sale_time');              // Date and time of the sale
             $table->timestamps();
 
             // Foreign key constraint

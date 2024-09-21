@@ -9,7 +9,7 @@ class PosSale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['food_item_id', 'quantity_sold', 'total_amount', 'sale_time'];
+    protected $fillable = ['food_item_id', 'quantity_sold'];
 
     public function fooditem()
     {

@@ -45,15 +45,27 @@ class DatabaseSeeder extends Seeder
             'email' => 'supplier@example.com',
             'password' => bcrypt('password'),
             'role' => Role::supplier->value, // Assign Supplier role
+            'closing_time' => '17:00:00', // Set closing time
 
         ]);
 
-        $this->call([
-            PosSalesSeeder::class,
+        User::factory()->create([
+            'name' => 'Subway',
+            'email' => 'subway@example.com',
+            'password' => bcrypt('password'),
+            'role' => Role::supplier->value, // Assign Supplier role
+            'closing_time' => '12:00:00', // Set closing time
+
         ]);
 
-        $this->call([
-            FoodItemsTableSeeder::class,
-        ]);
+
+
+//        $this->call([
+//            PosSalesSeeder::class,
+//        ]);
+//
+//        $this->call([
+//            FoodItemsTableSeeder::class,
+//        ]);
     }
 }

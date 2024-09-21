@@ -298,9 +298,14 @@
 <header class="bg-green-900 text-white">
     <div class="container mx-auto flex justify-between items-center p-4">
         <div class="flex items-center">
-            <img src="images/logo.jpg" alt="ReCuisine Logo" class="h-12 w-12 mr-3">
+            <img src="images/logo.jpg" alt="ReCuisine Logo" class="h-14 w-25 mr-16">
+
             @include('selectlocation')
+
         </div>
+
+
+
         <div class="flex items-center space-x-6">
             <a href="{{ route('home') }}" class="text-white">Home</a>
             <a href="{{ route('all-items') }}" class="text-white">All Items</a>

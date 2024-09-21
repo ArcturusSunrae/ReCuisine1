@@ -18,7 +18,7 @@ class InventoryController extends Controller
             $totalSales = $onlineSales + $inStoreSales;
 
             // Available stock
-            $item->remaining_stock = $item->stock - $totalSales;
+            $item->stock = $item->stock - $totalSales;
             $item->save();
         }
 

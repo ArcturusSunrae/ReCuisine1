@@ -12,10 +12,18 @@ return new class extends Migration {
             $table->string('title');
             $table->string('description')->nullable();
             $table->double('price');
+            $table->unsignedBigInteger('supplier_id');
             $table->string('supplier');
             $table->string('category');
             $table->integer('stock');
             $table->text('tags');
+
+
+          //
+              $table->foreign('supplier_id')->references('id')->on('users')->onDelete('cascade');
+
+
+
             $table->softDeletes();
             $table->timestamps();
         });

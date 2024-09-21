@@ -57,7 +57,7 @@ class SupplierController extends Controller
 
     public function dashboard()
     {
-        return view('supplier.supplier-dashboard');
+        return view('supplier.dashboard');
     }
 
     public function foodItems()

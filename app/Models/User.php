@@ -30,7 +30,13 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'closing_time',
     ];
+
+    protected $casts = [
+        'role' => \App\Enums\Role::class,
+    ];
+
 
     /**
      * The attributes that should be hidden for serialization.

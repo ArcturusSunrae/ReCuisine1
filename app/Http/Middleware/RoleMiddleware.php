@@ -29,6 +29,8 @@ class RoleMiddleware
         }
 
 
+
+
         // Log the role comparison for debugging
 //        logger('User role from database:', ['role' => $user?->role]);
 //        logger('Expected role enum value:', ['role_enum_value' => $roleEnum?->value]);
@@ -38,4 +40,9 @@ class RoleMiddleware
         // dd($user->role, $role);
         abort(403, 'Unauthorized action.');
     }
+
+
+
+
+
 }

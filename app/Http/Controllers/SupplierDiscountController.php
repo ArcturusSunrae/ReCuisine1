@@ -17,7 +17,7 @@ class SupplierDiscountController extends Controller
     }
 
     // Update the discount settings
-    public function update(Request $request, $id)
+    public function updateDiscount(Request $request, $id)
     {
         $request->validate([
             'discount_rate' => 'required|numeric|min:0|max:100',

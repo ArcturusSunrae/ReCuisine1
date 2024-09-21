@@ -14,6 +14,11 @@ class FoodItemController extends Controller
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $foodItems = FoodItem::all();
+
+        foreach ($foodItems as $foodItem) {
+            $foodItem->applyDiscount();
+        }
+
         return view('home', compact('foodItems'));
 
 

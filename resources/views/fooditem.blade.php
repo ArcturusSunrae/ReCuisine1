@@ -1,16 +1,24 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-        <!-- Food Item 1 -->
+
         @foreach($foodItems as $fooditem)
             <div class="bg-white p-6 rounded-lg shadow-lg dish-card" data-aos="fade-up">
                 <img src="images/FoodImage.png" alt="Dish Image" class="w-full h-40 object-cover rounded-t-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">{{ $fooditem->title }}</h3>
-                <p class="text-gray-600 mb-2">LKR {{ $fooditem->price }}</p>
+
+{{--                <p class="text-gray-600 mb-2">LKR {{ $fooditem->price }}</p>--}}
 
 {{--                Discounted price (should be there only if the discounted price is available, and also there should be a strikethrough in the
                      original price if the discounted price is there--}}
 {{--                <p class="text-green-600 font-bold text-xl mb-2">LKR {{ $fooditem->discounted_price }}</p>--}}
 
+
+                @if ($fooditem->discount_rate > 0)
+                    <p class="text-gray-600 mb-2"><strike>LKR {{ $fooditem->price }}</strike></p>
+                    <p class="text-green-600 font-bold text-xl mb-2">LKR {{ $fooditem->price * (1 - $fooditem->discount_rate / 100) }}</p>
+                @else
+                    <p class="text-gray-600 mb-2">LKR {{ $fooditem->price }}</p>
+                @endif
 
                 <div class="flex justify-between items-center">
                     <form action="{{ url('add_cart', $fooditem->id) }}" method="POST" class="flex items-center">
@@ -39,5 +47,5 @@
 
 
 
-    </div>
+
 

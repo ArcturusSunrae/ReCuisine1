@@ -16,6 +16,7 @@ class FoodItemFactory extends Factory
             'title' => 'Sample Food Item',
             'description' => 'This is a description of a food item.',
             'price' => 50.00,
+            'supplier_id' => 1,
             'supplier' => 'Sample Supplier',
             'category' => 'Sample Category',
             'stock' => 10,

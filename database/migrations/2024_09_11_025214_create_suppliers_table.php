@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();  // Primary key
             $table->unsignedBigInteger('user_id');  // Foreign key to the users table
-            $table->string('business_name');  // Business name of the supplier
+            $table->string('business_name'); // Business name of the supplier
             $table->string('phone');  // Phone number
             $table->string('location');  // Location of the supplier
+            $table->time('closing_time');
             $table->timestamps();  // Created at and updated at
 
             // Foreign key constraint: links to the users table

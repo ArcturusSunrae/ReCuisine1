@@ -15,6 +15,8 @@ class Supplier extends Model
         'business_name',
         'phone',
         'location',
+
+        'closing_time'
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
